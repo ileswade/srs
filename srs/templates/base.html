@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <title>Student Registration System{% if title %}{{ " - " + title }}{% endif %}</title>
+</head>
+<body>
+    <div class="container">
+        <header id="navbar">
+            <h1>Student Registration System</h1>
+            <nav class="navbar-container">
+                <ul>
+                    <li><a href="{{ url_for('views.addStudent') }}">Add Student</a></li>
+                    <li><a href="{{ url_for('views.addCourse') }}">Add Course</a></li>
+                    <li><a href="{{ url_for('views.register') }}">Register Student into Course</a></li>
+                    <li><a href="{{ url_for('views.build') }}">Rebuild</a></li>
+                    <li><a href="{{ url_for('views.populate') }}">Repopulate</a></li>
+                  </ul>
+            </nav>
+        </header>
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {{ message }}</br>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+        <main>
+            {% block main %}
+            {% endblock main %}
+        </main>
+        <footer>
+            Copyright (C) 2023 Student Registration System 
+        </footer>
+    </div>
+
+</body>
+</html>

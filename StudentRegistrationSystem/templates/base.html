@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <header id="navbar">
+            <h1>Student Registration System</h1>
+            <nav class="navbar-container">
+                <ul>
+                    <li><a href="{{ url_for('addStudent') }}">Add Student</a></li>
+                    <li><a href="{{ url_for('addCourse') }}">Add addCourse</a></li>
+                    <li><a href="{{ url_for('registerStudent') }}">Register Student in to Course</a></li>
+                    <li><a href="{{ url_for('build') }}">Reset Database</a></li>
+
+                </ul>
+            </nav>
+        </header>
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {{ message }}</br>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+        <main>
+            {% block main %}
+            {% endblock main %}
+        </main>
+        <footer>
+            Copyright 2023 (C) Iles Wade
+        </footer>
+    </div>
+</body>
+</html>
